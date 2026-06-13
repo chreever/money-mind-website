@@ -451,7 +451,7 @@
             <nav>
                 <ul>
                     <li><a href="#basics">Basics</a></li>
-                    <li><a href="#praxis">Praxis</a></li>
+                    <li><a href="#praxis">Wirtschaft</a></li>
                     <li><a href="#rechner">Rechner</a></li>
                     <li><a href="#about">Über mich</a></li>
                 </ul>
@@ -514,13 +514,11 @@
         </div>
     </section>
 
-   <!-- Wirtschaft & Alltag Section (Ehemals Praxis) -->
-    <section id="praxis" class="content-section">
+   <section id="praxis" class="content-section">
         <div class="container">
             <h2 class="section-title">Wirtschaft & Alltag</h2>
             <div class="module-grid">
                 
-                <!-- Brutto vs Netto -->
                 <div class="info-card blue module-full">
                     <h2><span class="icon" style="color: var(--accent-blue);">📄</span> Der Gehaltszettel-Schock (Brutto vs. Netto)</h2>
                     <p>Egal ob erste Lehrlingsentschädigung oder Ferialjob: Fast jeder ist beim ersten Gehaltszettel kurz geschockt. Warum ist auf dem Konto weniger Geld, als im Vertrag steht?</p>
@@ -534,21 +532,18 @@
                     </ul>
                 </div>
 
-                <!-- Inflation -->
                 <div class="info-card blue">
                     <h2><span class="icon" style="color: var(--accent-blue);">🎈</span> Inflation (Der unsichtbare Dieb)</h2>
                     <p>Hast du dich mal gefragt, warum eine Kugel Eis früher 1 Euro gekostet hat und heute oft 2 Euro oder mehr? Das ist <strong>Inflation</strong>.</p>
                     <p>Inflation bedeutet nicht einfach nur "Dinge werden teurer", sondern: <strong>Dein Geld verliert an Wert.</strong> Für einen 10-Euro-Schein bekommst du heute weniger Waren als noch vor 5 Jahren. Das ist extrem wichtig zu verstehen, wenn du Geld einfach nur zuhause in der Spardose liegen lässt – es wird über die Jahre automatisch weniger wert, weil die Kaufkraft sinkt.</p>
                 </div>
 
-                <!-- Zahlungsverkehr & Kontoüberzug -->
                 <div class="info-card blue">
                     <h2><span class="icon" style="color: var(--accent-blue);">💳</span> Dein Konto & die Dispo-Falle</h2>
                     <p>Ein eigenes Konto bedeutet Freiheit, aber auch Verantwortung. Der teuerste Fehler, den du machen kannst, ist der <strong>Kontoüberzug</strong> (in den Minus-Bereich gehen).</p>
                     <p>Wenn du mehr Geld ausgibst, als du hast, leihst du dir automatisch Geld von der Bank. Dafür verlangt die Bank Zinsen (sogenannte <strong>Sollzinsen</strong>). Diese sind oft extrem hoch (manchmal über 10 % pro Jahr). <em>Mentaltraining-Tipp:</em> Nutze immer nur eine Debitkarte, bei der sofort vom Konto abgebucht wird. So siehst du in der App sofort, was wirklich noch da ist.</p>
                 </div>
 
-                <!-- Cash statt Crash (Schuldenprävention) -->
                 <div class="info-card blue module-full" style="border-left-color: #ef4444;">
                     <h2 style="color: #ef4444;"><span class="icon" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">🚨</span> Cash statt Crash: Die Raten-Falle</h2>
                     <p>Studien in Österreich zeigen ganz klar: Die größte Schuldenfalle für junge Erwachsene sind heute keine riesigen Autokredite mehr, sondern <strong>"Buy Now, Pay Later" (BNPL)</strong> Angebote und Ratenkäufe bei Online-Shops.</p>
@@ -569,14 +564,12 @@
         </div>
     </section>
 
-    <!-- Interactive Rechner mit Tabs -->
     <section id="rechner" class="calculator-section">
         <div class="container">
             <h2 class="section-title">Tools & Rechner</h2>
             
             <div class="calc-wrapper">
                 
-                <!-- Tab Navigation -->
                 <div style="display: flex; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 6px; margin-bottom: 32px;">
                     <button id="btn-kredit" onclick="switchTab('kredit')" style="flex: 1; padding: 14px; border-radius: 8px; border: none; background: #ef4444; color: white; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);">
                         🚨 Raten-Schock
@@ -586,7 +579,6 @@
                     </button>
                 </div>
 
-                <!-- TAB 1: DER RATEN-SCHOCK-RECHNER -->
                 <div id="tab-kredit">
                     <div class="calc-header" style="margin-bottom: 24px;">
                         <h2 style="font-size: 22px; font-weight:800; color: #ef4444;">Was kostet Ratenkauf wirklich?</h2>
@@ -644,7 +636,6 @@
                     </div>
                 </div>
 
-                <!-- TAB 2: DER ZINSESZINS-RECHNER (Standardmäßig versteckt) -->
                 <div id="tab-sparen" style="display: none;">
                     <div class="calc-header" style="margin-bottom: 24px;">
                         <h2 style="font-size: 22px; font-weight:800; color: var(--accent-mint);">Der Zinseszins-Effekt</h2>
@@ -760,24 +751,29 @@
         <p>&copy; 2026 money-mind.at. Alle Rechte vorbehalten. Entwickelt für die finanzielle Zukunft der nächsten Generation.</p>
     </footer>
 
-    <script>
-        function updateCalc() {
-            const abos = parseInt(document.getElementById('input-abos').value);
-            const food = parseInt(document.getElementById('input-food').value);
-            const gaming = parseInt(document.getElementById('input-gaming').value);
-
-            document.getElementById('val-abos').innerText = abos;
-            document.getElementById('val-food').innerText = food;
-            document.getElementById('val-gaming').innerText = gaming;
-
-            const total = abos + food + gaming;
-            document.getElementById('total-val').innerText = total;
+    <div id="quiz-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 15, 25, 0.95); z-index: 1000; backdrop-filter: blur(5px); justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 40px; max-width: 500px; width: 100%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
             
-            const yearly = total * 12;
-            document.getElementById('year-val').innerText = yearly.toLocaleString('de-AT');
-        }
+            <button onclick="closeQuiz()" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
+            
+            <div id="quiz-content">
+                <h3 style="color: var(--accent-purple); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Mindset-Check</h3>
+                <h2 id="quiz-question" style="font-size: 24px; font-weight: 800; margin-bottom: 24px; line-height: 1.3;">Laden...</h2>
+                
+                <div id="quiz-options" style="display: flex; flex-direction: column; gap: 12px;">
+                    </div>
+            </div>
 
-<script>
+            <div id="quiz-result" style="display: none; text-align: center;">
+                <div id="result-icon" style="font-size: 48px; margin-bottom: 16px;">🧠</div>
+                <h2 id="result-title" style="font-size: 28px; font-weight: 800; margin-bottom: 12px;">Dein Typ</h2>
+                <p id="result-text" style="color: var(--text-muted); margin-bottom: 24px;"></p>
+                <button onclick="closeQuiz()" class="btn" style="width: 100%;">Alles klar, let's go!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
         // -------------------------------------------
         // TAB-UMSCHALTER LOGIK
         // -------------------------------------------
@@ -788,10 +784,8 @@
             const tabSparen = document.getElementById('tab-sparen');
 
             if (tab === 'kredit') {
-                // Zeige Kredit-Tab
                 tabKredit.style.display = 'block';
                 tabSparen.style.display = 'none';
-                // Style Buttons
                 btnKredit.style.background = '#ef4444';
                 btnKredit.style.color = 'white';
                 btnKredit.style.boxShadow = '0 4px 12px rgba(239, 68, 68, 0.3)';
@@ -799,10 +793,8 @@
                 btnSparen.style.color = 'var(--text-muted)';
                 btnSparen.style.boxShadow = 'none';
             } else {
-                // Zeige Sparen-Tab
                 tabKredit.style.display = 'none';
                 tabSparen.style.display = 'block';
-                // Style Buttons
                 btnSparen.style.background = 'var(--accent-mint)';
                 btnSparen.style.color = '#0b0f19';
                 btnSparen.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.3)';
@@ -874,48 +866,13 @@
             document.getElementById('res-gesamt').innerText = endkapital.toLocaleString('de-AT', {maximumFractionDigits: 0}) + ' €';
         }
 
-        // Beide Rechner beim Laden einmal ausführen
+        // Initiale Berechnung beim Laden der Seite ausführen
         updateKredit();
         updateZins();
 
-        // Initiale Berechnung beim Laden der Seite ausführen
-        updateKredit();
-
-        // Initiale Berechnung beim Laden der Seite ausführen
-        updateZins();
-    </script>
-
-    <!-- ------------------------------------------- -->
-    <!-- INTERAKTIVES FEATURE 1: MONEY-MINDSET QUIZ -->
-    <!-- ------------------------------------------- -->
-    
-    <!-- Das Quiz-Modal (unsichtbar bis zum Klick) -->
-    <div id="quiz-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 15, 25, 0.95); z-index: 1000; backdrop-filter: blur(5px); justify-content: center; align-items: center; padding: 20px;">
-        <div style="background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 40px; max-width: 500px; width: 100%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-            
-            <!-- Schließen-Button -->
-            <button onclick="closeQuiz()" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
-            
-            <div id="quiz-content">
-                <h3 style="color: var(--accent-purple); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Mindset-Check</h3>
-                <h2 id="quiz-question" style="font-size: 24px; font-weight: 800; margin-bottom: 24px; line-height: 1.3;">Laden...</h2>
-                
-                <div id="quiz-options" style="display: flex; flex-direction: column; gap: 12px;">
-                    <!-- Buttons werden per JS generiert -->
-                </div>
-            </div>
-
-            <div id="quiz-result" style="display: none; text-align: center;">
-                <div id="result-icon" style="font-size: 48px; margin-bottom: 16px;">🧠</div>
-                <h2 id="result-title" style="font-size: 28px; font-weight: 800; margin-bottom: 12px;">Dein Typ</h2>
-                <p id="result-text" style="color: var(--text-muted); margin-bottom: 24px;"></p>
-                <button onclick="closeQuiz()" class="btn" style="width: 100%;">Alles klar, let's go!</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Quiz Logik & Daten
+        // -------------------------------------------
+        // QUIZ LOGIK
+        // -------------------------------------------
         const quizData = [
             {
                 question: "Ein limitierter Sneaker (oder ein In-App-Skin) droppt. Alle reden darüber. Was tust du?",
@@ -969,7 +926,6 @@
             q.options.forEach(opt => {
                 const btn = document.createElement('button');
                 btn.innerText = opt.text;
-                // Button Styling
                 btn.style.padding = '16px';
                 btn.style.backgroundColor = 'rgba(255,255,255,0.05)';
                 btn.style.border = '1px solid rgba(255,255,255,0.1)';
