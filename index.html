@@ -569,73 +569,134 @@
         </div>
     </section>
 
-    <!-- Interactive "Cash statt Crash" Rechner -->
+    <!-- Interactive Rechner mit Tabs -->
     <section id="rechner" class="calculator-section">
         <div class="container">
             <h2 class="section-title">Tools & Rechner</h2>
-            <div class="calc-wrapper" style="border-top: 4px solid #ef4444;">
-                <div class="calc-header">
-                    <h2 style="font-size: 24px; font-weight:800; color: #ef4444;"><span class="icon">🚨</span> Der Raten-Schock-Rechner</h2>
-                    <p>Ein neues Smartphone für "nur 45 € im Monat"? Finde heraus, was Konsumkredite und "Buy Now, Pay Later" dich am Ende wirklich kosten.</p>
-                </div>
-
-                <!-- Kaufpreis -->
-                <div class="slider-group">
-                    <div class="slider-label">
-                        <span>Ursprünglicher Kaufpreis</span>
-                        <span class="amount" style="color: var(--text-main);"><span id="val-price">1000</span> €</span>
-                    </div>
-                    <input type="range" id="input-price" min="100" max="3000" value="1000" step="50" oninput="updateKredit()" style="background: #374151;">
-                </div>
+            
+            <div class="calc-wrapper">
                 
-                <!-- Laufzeit -->
-                <div class="slider-group">
-                    <div class="slider-label">
-                        <span>Laufzeit (Monate)</span>
-                        <span class="amount" style="color: var(--text-main);"><span id="val-months">24</span> Monate</span>
-                    </div>
-                    <input type="range" id="input-months" min="3" max="36" value="24" step="3" oninput="updateKredit()" style="background: #374151;">
-                </div>
-                
-                <!-- Zinsen -->
-                <div class="slider-group">
-                    <div class="slider-label">
-                        <span>Sollzinsen (Überzug / Ratenkredit)</span>
-                        <span class="amount" style="color: #ef4444;"><span id="val-rate_pa">12</span> % p.a.</span>
-                    </div>
-                    <input type="range" id="input-rate_pa" min="0" max="25" value="12" step="1" oninput="updateKredit()" style="background: rgba(239, 68, 68, 0.3);">
+                <!-- Tab Navigation -->
+                <div style="display: flex; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 6px; margin-bottom: 32px;">
+                    <button id="btn-kredit" onclick="switchTab('kredit')" style="flex: 1; padding: 14px; border-radius: 8px; border: none; background: #ef4444; color: white; font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);">
+                        🚨 Raten-Schock
+                    </button>
+                    <button id="btn-sparen" onclick="switchTab('sparen')" style="flex: 1; padding: 14px; border-radius: 8px; border: none; background: transparent; color: var(--text-muted); font-weight: 600; font-size: 15px; cursor: pointer; transition: all 0.2s;">
+                        📈 Zinseszins
+                    </button>
                 </div>
 
-                <!-- Versteckte Gebühren -->
-                <div class="slider-group">
-                    <div class="slider-label">
-                        <span>Mahnspesen & Bearbeitungsgebühren</span>
-                        <span class="amount" style="color: #ef4444;"><span id="val-fees">50</span> €</span>
+                <!-- TAB 1: DER RATEN-SCHOCK-RECHNER -->
+                <div id="tab-kredit">
+                    <div class="calc-header" style="margin-bottom: 24px;">
+                        <h2 style="font-size: 22px; font-weight:800; color: #ef4444;">Was kostet Ratenkauf wirklich?</h2>
+                        <p>Finde heraus, wie stark Zinsen und Gebühren den echten Preis nach oben treiben.</p>
                     </div>
-                    <input type="range" id="input-fees" min="0" max="200" value="50" step="10" oninput="updateKredit()" style="background: rgba(239, 68, 68, 0.3);">
-                </div>
 
-                <!-- Ergebnisse -->
-                <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
-                        <span style="color: var(--text-muted); font-size: 15px;">Eigentlicher Wert:</span>
-                        <span style="color: #cbd5e1; font-weight: 600;" id="res-original">1.000 €</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
-                        <span style="color: #ef4444; font-size: 15px; font-weight: 600;">Zusatzkosten (Zinsen & Gebühren):</span>
-                        <span style="color: #ef4444; font-weight: 800;" id="res-extra">+ 180 €</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(239, 68, 68, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #ef4444;">
-                        <div>
-                            <div style="font-weight: 700; color: #fff;">Tatsächlicher Preis:</div>
-                            <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Monatliche Belastung: <span id="res-monthly" style="color: #fff; font-weight: 600;">49 €</span></div>
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Ursprünglicher Kaufpreis</span>
+                            <span class="amount" style="color: var(--text-main);"><span id="val-price">1000</span> €</span>
                         </div>
-                        <span style="font-size: 28px; font-weight: 800; color: #ef4444;" id="res-total">1.180 €</span>
+                        <input type="range" id="input-price" min="100" max="3000" value="1000" step="50" oninput="updateKredit()" style="background: #374151;">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Laufzeit (Monate)</span>
+                            <span class="amount" style="color: var(--text-main);"><span id="val-months">24</span> Monate</span>
+                        </div>
+                        <input type="range" id="input-months" min="3" max="36" value="24" step="3" oninput="updateKredit()" style="background: #374151;">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Sollzinsen (Kredit/Überzug)</span>
+                            <span class="amount" style="color: #ef4444;"><span id="val-rate_pa">12</span> % p.a.</span>
+                        </div>
+                        <input type="range" id="input-rate_pa" min="0" max="25" value="12" step="1" oninput="updateKredit()" style="background: rgba(239, 68, 68, 0.3);">
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Versteckte Spesen & Gebühren</span>
+                            <span class="amount" style="color: #ef4444;"><span id="val-fees">50</span> €</span>
+                        </div>
+                        <input type="range" id="input-fees" min="0" max="200" value="50" step="10" oninput="updateKredit()" style="background: rgba(239, 68, 68, 0.3);">
+                    </div>
+
+                    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                            <span style="color: var(--text-muted); font-size: 15px;">Eigentlicher Wert:</span>
+                            <span style="color: #cbd5e1; font-weight: 600;" id="res-original">1.000 €</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <span style="color: #ef4444; font-size: 15px; font-weight: 600;">Zusatzkosten (Zinsen & Gebühren):</span>
+                            <span style="color: #ef4444; font-weight: 800;" id="res-extra">+ 180 €</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(239, 68, 68, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #ef4444;">
+                            <div>
+                                <div style="font-weight: 700; color: #fff;">Tatsächlicher Preis:</div>
+                                <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Monatliche Ratenbelastung: <span id="res-monthly" style="color: #fff; font-weight: 600;">49 €</span></div>
+                            </div>
+                            <span style="font-size: 28px; font-weight: 800; color: #ef4444;" id="res-total">1.180 €</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="calc-tip" id="calc-tip-box" style="border-left-color: #ef4444; background: rgba(239, 68, 68, 0.05); margin-top: 24px;">
-                    <strong>MoneyMind-Tipp:</strong> Spare den Betrag lieber vorher an. Die <span id="tip-extra">180</span> Euro Zusatzkosten schenkst du sonst völlig sinnlos der Bank oder dem Zahlungsanbieter, anstatt sie für dich selbst zu nutzen!
+                <!-- TAB 2: DER ZINSESZINS-RECHNER (Standardmäßig versteckt) -->
+                <div id="tab-sparen" style="display: none;">
+                    <div class="calc-header" style="margin-bottom: 24px;">
+                        <h2 style="font-size: 22px; font-weight:800; color: var(--accent-mint);">Der Zinseszins-Effekt</h2>
+                        <p>Erlebe, wie die Mathematik für dich arbeitet, wenn du regelmäßig Geld beiseite legst.</p>
+                    </div>
+
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Startkapital</span>
+                            <span class="amount" style="color: var(--accent-mint);"><span id="val-start">500</span> €</span>
+                        </div>
+                        <input type="range" id="input-start" min="0" max="5000" value="500" step="100" oninput="updateZins()" style="background: rgba(16, 185, 129, 0.3);">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Monatliche Sparrate</span>
+                            <span class="amount" style="color: var(--accent-mint);"><span id="val-rate">50</span> €</span>
+                        </div>
+                        <input type="range" id="input-rate" min="0" max="500" value="50" step="10" oninput="updateZins()" style="background: rgba(16, 185, 129, 0.3);">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Laufzeit (Jahre)</span>
+                            <span class="amount" style="color: var(--text-main);"><span id="val-jahre">15</span> Jahre</span>
+                        </div>
+                        <input type="range" id="input-jahre" min="1" max="40" value="15" step="1" oninput="updateZins()" style="background: #374151;">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <div class="slider-label">
+                            <span>Zinssatz (pro Jahr)</span>
+                            <span class="amount" style="color: var(--accent-mint);"><span id="val-zins">4</span> % p.a.</span>
+                        </div>
+                        <input type="range" id="input-zins" min="1" max="10" value="4" step="0.5" oninput="updateZins()" style="background: rgba(16, 185, 129, 0.3);">
+                    </div>
+
+                    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                            <span style="color: var(--text-muted); font-size: 15px;">Selbst angespart:</span>
+                            <span style="color: #cbd5e1; font-weight: 600;" id="res-eingezahlt">9.500 €</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <span style="color: var(--accent-mint); font-size: 15px; font-weight: 600;">Reiner Zinsgewinn:</span>
+                            <span style="color: var(--accent-mint); font-weight: 800;" id="res-gewinn">+ 3.250 €</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(16, 185, 129, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent-mint);">
+                            <div style="font-weight: 700; color: #fff;">Gesamtvermögen:</div>
+                            <span style="font-size: 28px; font-weight: 800; color: var(--accent-mint);" id="res-gesamt">12.750 €</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
