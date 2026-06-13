@@ -520,27 +520,43 @@
             <div class="module-grid">
                 <div class="info-card blue module-full">
                     <h2><span class="icon" style="color: var(--accent-blue);">🏢</span> Was ist eine Aktie?</h2>
-                    <p>Eine Aktie ist kein Lottoschein. Wenn du eine Aktie kaufst, erwirbst du einen realen Anteil an einem Unternehmen.</p>
+                    <p>Eine Aktie ist kein Lottoschein. Wenn du eine Aktie kaufst, erwirbst du einen realen Anteil an einem Unternehmen. Du wirst zum Mitbesitzer.</p>
                     <div class="highlight-box">
                         <strong>Beispiel aus der Praxis:</strong> Wenn ein Pharmaunternehmen wie Novo Nordisk ein neues Medikament auf den Markt bringt, oder ein Tech-Gigant wie Intel neue Chips vorstellt, profitierst du direkt vom Erfolg deines Unternehmens. 
                     </div>
                     <p>Aber Achtung: Kurse schwanken (<strong>Volatilität</strong>). Wenn eine SpaceX-Rakete startet, jubelt der Markt. Gibt es Lieferschwierigkeiten für Bauteile (z. B. bei AT&S), fallen Kurse auch mal. Das ist normales Wirtschaften.</p>
                 </div>
 
-                <div class="info-card blue">
-                    <h2><span class="icon" style="color: var(--accent-blue);">🧺</span> Der ETF (Dein Korb)</h2>
-                    <p>Einzelne Aktien zu kaufen trägt Risiko. Was, wenn genau "dein" Unternehmen Probleme bekommt?</p>
-                    <p>Hier kommen <strong>ETFs</strong> ins Spiel. Ein ETF ist wie ein großer Korb mit hunderten Aktien. Wenn ein Unternehmen einen schlechten Tag hat, gleichen die anderen das aus. Die beste Strategie für langfristigen Vermögensaufbau.</p>
+                <div class="info-card blue" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h2><span class="icon" style="color: var(--accent-blue);">🧺</span> Der ETF (Dein Korb)</h2>
+                        <p>Einzelne Aktien zu kaufen trägt Risiko. Was, wenn genau "dein" Unternehmen Probleme bekommt?</p>
+                        <p>Hier kommen <strong>ETFs</strong> ins Spiel. Ein ETF ist wie ein großer Korb mit hunderten Aktien. Wenn ein Unternehmen einen schlechten Tag hat, gleichen die anderen das aus. Die beste Strategie für langfristigen Vermögensaufbau.</p>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 16px; padding: 20px; text-align: center; margin-top: 24px;">
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px;">
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 8px; font-size: 11px; color: var(--text-muted); font-weight: 500;">Intel</div>
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 8px; font-size: 11px; color: var(--text-muted); font-weight: 500;">Apple</div>
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 8px; font-size: 11px; color: var(--text-muted); font-weight: 500;">AT&S</div>
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 8px; font-size: 11px; color: var(--text-muted); font-weight: 500;">Novo N.</div>
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 8px; font-size: 11px; color: var(--text-muted); font-weight: 500;">Microsoft</div>
+                            <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 8px; font-size: 11px; color: var(--text-muted); font-weight: 500;">+500 mehr</div>
+                        </div>
+                        <div style="font-size: 14px; margin-bottom: 12px; color: var(--accent-blue); font-weight: 600; letter-spacing: 0.5px;">
+                            ▼ Automatische Bündelung im Fonds ▼
+                        </div>
+                        <div style="background: var(--gradient-primary); color: #0b0f19; font-weight: 800; padding: 10px; border-radius: 10px; font-size: 13px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); display: inline-block; width: 100%;">
+                            1 ETF = Volle Risikostreuung
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Zinseszins-Simulator -->
                 <div class="info-card blue">
                     <h2><span class="icon" style="color: var(--accent-blue);">📈</span> Der Zinseszins-Simulator</h2>
                     <p>Erlebe den Schneeballeffekt! Probier aus, wie aus kleinen Beträgen über die Jahre ein echtes Vermögen für dein Zukunfts-Ich wird.</p>
                     
                     <div style="background: rgba(0,0,0,0.2); border-radius: 16px; padding: 24px; margin-top: 24px;">
-                        
-                        <!-- Startkapital -->
                         <div class="slider-group">
                             <div class="slider-label">
                                 <span>Startkapital</span>
@@ -549,7 +565,6 @@
                             <input type="range" id="input-start" min="0" max="5000" value="500" step="100" oninput="updateZins()">
                         </div>
                         
-                        <!-- Monatliche Sparrate -->
                         <div class="slider-group">
                             <div class="slider-label">
                                 <span>Monatlich sparen (z.B. ETF)</span>
@@ -558,7 +573,6 @@
                             <input type="range" id="input-rate" min="0" max="500" value="50" step="10" oninput="updateZins()">
                         </div>
                         
-                        <!-- Jahre -->
                         <div class="slider-group">
                             <div class="slider-label">
                                 <span>Laufzeit (Jahre)</span>
@@ -567,7 +581,6 @@
                             <input type="range" id="input-jahre" min="1" max="40" value="15" step="1" oninput="updateZins()">
                         </div>
                         
-                        <!-- Rendite -->
                         <div class="slider-group">
                             <div class="slider-label">
                                 <span>Rendite (Marktdurchschnitt)</span>
@@ -576,7 +589,6 @@
                             <input type="range" id="input-zins" min="1" max="15" value="7" step="1" oninput="updateZins()">
                         </div>
 
-                        <!-- Ergebnisse -->
                         <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                                 <span style="color: var(--text-muted); font-size: 14px;">Selbst eingezahlt:</span>
@@ -592,16 +604,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                    
-                    <div style="text-align: center; margin: 24px 0; color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: 0.5px;">
-                        K<sub>n</sub> = K<sub>0</sub> · (1 + p/100)<sup>n</sup>
-                    </div>
-                    
-                    <p style="font-size: 14px; text-align: center; color: var(--text-muted); margin-bottom: 16px;">
-                        <em>K<sub>n</sub> = Endkapital &nbsp;|&&nbsp; K<sub>0</sub> = Startkapital &nbsp;|&&nbsp; p = Zinssatz &nbsp;|&&nbsp; n = Jahre</em>
-                    </p>
-                    <p>Je länger du dein Geld arbeiten lässt (Anzahl der Jahre <sup>n</sup>), desto explosiver wird das Wachstum durch diesen Zinseszinseffekt.</p>
                 </div>
             </div>
         </div>
