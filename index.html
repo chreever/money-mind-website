@@ -533,16 +533,66 @@
                     <p>Hier kommen <strong>ETFs</strong> ins Spiel. Ein ETF ist wie ein großer Korb mit hunderten Aktien. Wenn ein Unternehmen einen schlechten Tag hat, gleichen die anderen das aus. Die beste Strategie für langfristigen Vermögensaufbau.</p>
                 </div>
 
+                <!-- Zinseszins-Simulator -->
                 <div class="info-card blue">
-                    <h2><span class="icon" style="color: var(--accent-blue);">📈</span> Der Zinseszins</h2>
-                    <p>Deine Erträge erwirtschaften im nächsten Jahr selbst wieder Erträge. Ein Schneeballeffekt.</p>
-                    <div class="chart-container">
-                        <div class="chart-bar" style="height: 20%;"></div>
-                        <div class="chart-bar" style="height: 30%;"></div>
-                        <div class="chart-bar" style="height: 45%;"></div>
-                        <div class="chart-bar" style="height: 65%;"></div>
-                        <div class="chart-bar" style="height: 90%;"></div>
+                    <h2><span class="icon" style="color: var(--accent-blue);">📈</span> Der Zinseszins-Simulator</h2>
+                    <p>Erlebe den Schneeballeffekt! Probier aus, wie aus kleinen Beträgen über die Jahre ein echtes Vermögen für dein Zukunfts-Ich wird.</p>
+                    
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 16px; padding: 24px; margin-top: 24px;">
+                        
+                        <!-- Startkapital -->
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Startkapital</span>
+                                <span class="amount"><span id="val-start">500</span> €</span>
+                            </div>
+                            <input type="range" id="input-start" min="0" max="5000" value="500" step="100" oninput="updateZins()">
+                        </div>
+                        
+                        <!-- Monatliche Sparrate -->
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Monatlich sparen (z.B. ETF)</span>
+                                <span class="amount"><span id="val-rate">50</span> €</span>
+                            </div>
+                            <input type="range" id="input-rate" min="0" max="500" value="50" step="10" oninput="updateZins()">
+                        </div>
+                        
+                        <!-- Jahre -->
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Laufzeit (Jahre)</span>
+                                <span class="amount"><span id="val-jahre">15</span> Jahre</span>
+                            </div>
+                            <input type="range" id="input-jahre" min="1" max="40" value="15" step="1" oninput="updateZins()">
+                        </div>
+                        
+                        <!-- Rendite -->
+                        <div class="slider-group">
+                            <div class="slider-label">
+                                <span>Rendite (Marktdurchschnitt)</span>
+                                <span class="amount"><span id="val-zins">7</span> % p.a.</span>
+                            </div>
+                            <input type="range" id="input-zins" min="1" max="15" value="7" step="1" oninput="updateZins()">
+                        </div>
+
+                        <!-- Ergebnisse -->
+                        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="color: var(--text-muted); font-size: 14px;">Selbst eingezahlt:</span>
+                                <span style="color: #cbd5e1; font-weight: 600;" id="res-eingezahlt">9.500 €</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                                <span style="color: var(--accent-mint); font-size: 14px; font-weight: 600;">Reiner Zinsgewinn:</span>
+                                <span style="color: var(--accent-mint); font-weight: 600;" id="res-gewinn">+ 6.344 €</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(59, 130, 246, 0.1); padding: 16px; border-radius: 12px; border-left: 4px solid var(--accent-blue);">
+                                <span style="font-weight: 700; color: #fff;">Endkapital:</span>
+                                <span style="font-size: 28px; font-weight: 800; color: #fff;" id="res-gesamt">15.844 €</span>
+                            </div>
+                        </div>
                     </div>
+                </div>
                     
                     <div style="text-align: center; margin: 24px 0; color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: 0.5px;">
                         K<sub>n</sub> = K<sub>0</sub> · (1 + p/100)<sup>n</sup>
