@@ -777,8 +777,43 @@
             document.getElementById('year-val').innerText = yearly.toLocaleString('de-AT');
         }
 
-       // -------------------------------------------
-        // INTERAKTIVES FEATURE 2: RATEN-SCHOCK-RECHNER
+<script>
+        // -------------------------------------------
+        // TAB-UMSCHALTER LOGIK
+        // -------------------------------------------
+        function switchTab(tab) {
+            const btnKredit = document.getElementById('btn-kredit');
+            const btnSparen = document.getElementById('btn-sparen');
+            const tabKredit = document.getElementById('tab-kredit');
+            const tabSparen = document.getElementById('tab-sparen');
+
+            if (tab === 'kredit') {
+                // Zeige Kredit-Tab
+                tabKredit.style.display = 'block';
+                tabSparen.style.display = 'none';
+                // Style Buttons
+                btnKredit.style.background = '#ef4444';
+                btnKredit.style.color = 'white';
+                btnKredit.style.boxShadow = '0 4px 12px rgba(239, 68, 68, 0.3)';
+                btnSparen.style.background = 'transparent';
+                btnSparen.style.color = 'var(--text-muted)';
+                btnSparen.style.boxShadow = 'none';
+            } else {
+                // Zeige Sparen-Tab
+                tabKredit.style.display = 'none';
+                tabSparen.style.display = 'block';
+                // Style Buttons
+                btnSparen.style.background = 'var(--accent-mint)';
+                btnSparen.style.color = '#0b0f19';
+                btnSparen.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.3)';
+                btnKredit.style.background = 'transparent';
+                btnKredit.style.color = 'var(--text-muted)';
+                btnKredit.style.boxShadow = 'none';
+            }
+        }
+
+        // -------------------------------------------
+        // RECHNER 1: RATEN-SCHOCK
         // -------------------------------------------
         function updateKredit() {
             const price = parseInt(document.getElementById('input-price').value);
@@ -786,15 +821,12 @@
             const rate_pa = parseFloat(document.getElementById('input-rate_pa').value);
             const fees = parseInt(document.getElementById('input-fees').value);
 
-            // Regler-Texte updaten
             document.getElementById('val-price').innerText = price.toLocaleString('de-AT');
             document.getElementById('val-months').innerText = months;
             document.getElementById('val-rate_pa').innerText = rate_pa;
             document.getElementById('val-fees').innerText = fees;
 
-            // Annuitätendarlehen Mathematik (vereinfacht für monatliche Raten)
             let monthly_payment = 0;
-            
             if (rate_pa > 0) {
                 const p_month = rate_pa / 100 / 12;
                 const q = 1 + p_month;
@@ -803,20 +835,48 @@
                 monthly_payment = price / months;
             }
 
-            // Gesamtkosten berechnen
             const total_paid = (monthly_payment * months) + fees;
             const extra_cost = total_paid - price;
-            const final_monthly_with_fees = total_paid / months;
 
-            // Ergebnisse ins HTML schreiben (kaufmännisch gerundet auf ganze Euro)
             document.getElementById('res-original').innerText = price.toLocaleString('de-AT') + ' €';
             document.getElementById('res-extra').innerText = '+ ' + Math.round(extra_cost).toLocaleString('de-AT') + ' €';
             document.getElementById('res-total').innerText = Math.round(total_paid).toLocaleString('de-AT') + ' €';
-            document.getElementById('res-monthly').innerText = Math.round(final_monthly_with_fees).toLocaleString('de-AT') + ' €';
-            
-            // Tipp-Text dynamisch anpassen
-            document.getElementById('tip-extra').innerText = Math.round(extra_cost).toLocaleString('de-AT');
+            document.getElementById('res-monthly').innerText = Math.round(total_paid / months).toLocaleString('de-AT') + ' €';
         }
+
+        // -------------------------------------------
+        // RECHNER 2: ZINSESZINS (NEUTRAL)
+        // -------------------------------------------
+        function updateZins() {
+            const start = parseInt(document.getElementById('input-start').value);
+            const rate = parseInt(document.getElementById('input-rate').value);
+            const jahre = parseInt(document.getElementById('input-jahre').value);
+            const zins = parseFloat(document.getElementById('input-zins').value);
+
+            document.getElementById('val-start').innerText = start.toLocaleString('de-AT');
+            document.getElementById('val-rate').innerText = rate.toLocaleString('de-AT');
+            document.getElementById('val-jahre').innerText = jahre;
+            document.getElementById('val-zins').innerText = zins;
+
+            const q = 1 + (zins / 100 / 12);
+            const monate = jahre * 12;
+            
+            let endkapital = start * Math.pow(q, monate);
+            if (rate > 0) {
+                endkapital += rate * ((Math.pow(q, monate) - 1) / (q - 1)) * q;
+            }
+
+            const eingezahlt = start + (rate * monate);
+            const gewinn = endkapital - eingezahlt;
+
+            document.getElementById('res-eingezahlt').innerText = eingezahlt.toLocaleString('de-AT', {maximumFractionDigits: 0}) + ' €';
+            document.getElementById('res-gewinn').innerText = '+ ' + Math.max(0, gewinn).toLocaleString('de-AT', {maximumFractionDigits: 0}) + ' €';
+            document.getElementById('res-gesamt').innerText = endkapital.toLocaleString('de-AT', {maximumFractionDigits: 0}) + ' €';
+        }
+
+        // Beide Rechner beim Laden einmal ausführen
+        updateKredit();
+        updateZins();
 
         // Initiale Berechnung beim Laden der Seite ausführen
         updateKredit();
