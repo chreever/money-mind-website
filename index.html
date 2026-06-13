@@ -671,5 +671,147 @@
             document.getElementById('year-val').innerText = yearly.toLocaleString('de-AT');
         }
     </script>
+
+    <!-- ------------------------------------------- -->
+    <!-- INTERAKTIVES FEATURE 1: MONEY-MINDSET QUIZ -->
+    <!-- ------------------------------------------- -->
+    
+    <!-- Das Quiz-Modal (unsichtbar bis zum Klick) -->
+    <div id="quiz-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 15, 25, 0.95); z-index: 1000; backdrop-filter: blur(5px); justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; padding: 40px; max-width: 500px; width: 100%; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            
+            <!-- Schließen-Button -->
+            <button onclick="closeQuiz()" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
+            
+            <div id="quiz-content">
+                <h3 style="color: var(--accent-purple); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Mindset-Check</h3>
+                <h2 id="quiz-question" style="font-size: 24px; font-weight: 800; margin-bottom: 24px; line-height: 1.3;">Laden...</h2>
+                
+                <div id="quiz-options" style="display: flex; flex-direction: column; gap: 12px;">
+                    <!-- Buttons werden per JS generiert -->
+                </div>
+            </div>
+
+            <div id="quiz-result" style="display: none; text-align: center;">
+                <div id="result-icon" style="font-size: 48px; margin-bottom: 16px;">🧠</div>
+                <h2 id="result-title" style="font-size: 28px; font-weight: 800; margin-bottom: 12px;">Dein Typ</h2>
+                <p id="result-text" style="color: var(--text-muted); margin-bottom: 24px;"></p>
+                <button onclick="closeQuiz()" class="btn" style="width: 100%;">Alles klar, let's go!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Logik & Daten
+        const quizData = [
+            {
+                question: "Ein limitierter Sneaker (oder ein In-App-Skin) droppt. Alle reden darüber. Was tust du?",
+                options: [
+                    { text: "Ich muss es haben. Direkt kaufen!", points: 1 },
+                    { text: "Ich warte die 48-Stunden-Regel ab.", points: 3 },
+                    { text: "Interessiert mich nicht. Ich spare mein Geld.", points: 2 }
+                ]
+            },
+            {
+                question: "Wir haben den 25. des Monats. Wie sieht dein Konto / Taschengeld aus?",
+                options: [
+                    { text: "Gähnende Leere. Ich warte auf Nachschub.", points: 1 },
+                    { text: "Ich habe genau budgetiert, alles im grünen Bereich.", points: 3 },
+                    { text: "Ich traue mich gar nicht, auf den Kontostand zu schauen.", points: 1 }
+                ]
+            },
+            {
+                question: "Wie bezahlst du meistens?",
+                options: [
+                    { text: "Handy, Apple Pay, Klarna (Buy now, pay later).", points: 1 },
+                    { text: "Immer bar. Da spüre ich, was weggeht.", points: 2 },
+                    { text: "Mit Karte, aber ich checke regelmäßig meine Ausgaben in der App.", points: 3 }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-result').style.display = 'none';
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('quiz-modal').style.display = 'flex';
+            loadQuestion();
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-modal').style.display = 'none';
+        }
+
+        function loadQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById('quiz-question').innerText = q.question;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.innerText = opt.text;
+                // Button Styling
+                btn.style.padding = '16px';
+                btn.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                btn.style.border = '1px solid rgba(255,255,255,0.1)';
+                btn.style.borderRadius = '12px';
+                btn.style.color = '#f3f4f6';
+                btn.style.fontSize = '15px';
+                btn.style.cursor = 'pointer';
+                btn.style.textAlign = 'left';
+                btn.style.transition = 'all 0.2s';
+                
+                btn.onmouseover = function() { this.style.backgroundColor = 'rgba(139, 92, 246, 0.2)'; this.style.borderColor = '#8b5cf6'; }
+                btn.onmouseout = function() { this.style.backgroundColor = 'rgba(255,255,255,0.05)'; this.style.borderColor = 'rgba(255,255,255,0.1)'; }
+                
+                btn.onclick = () => selectOption(opt.points);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectOption(points) {
+            score += points;
+            currentQuestion++;
+            
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('quiz-result').style.display = 'block';
+            
+            let title = "";
+            let text = "";
+            let icon = "";
+
+            if (score <= 4) {
+                icon = "💸";
+                title = "Der Impuls-Käufer";
+                text = "Du lebst im Moment – das ist cool, aber gefährlich für dein Konto. Dein Gehirn trickst dich oft mit schnellen Belohnungen aus. Die Money Basics auf dieser Seite werden dein Gamechanger sein!";
+            } else if (score <= 7) {
+                icon = "🛡️";
+                title = "Der Sicherheits-Fan";
+                text = "Du gehst sparsam mit Geld um und verlierst nicht so schnell die Kontrolle. Sehr gut! Jetzt wird es Zeit, dass du lernst, wie dieses Geld an der Börse für dich arbeiten kann.";
+            } else {
+                icon = "🧠";
+                title = "Der smarte Stratege";
+                text = "Stark! Du hast bereits ein exzellentes Money-Mindset. Du durchschaust Konsumfallen und hast dein Budget im Griff. Du bist definitiv bereit für die fortgeschrittenen Praxis-Tipps!";
+            }
+
+            document.getElementById('result-icon').innerText = icon;
+            document.getElementById('result-title').innerText = title;
+            document.getElementById('result-text').innerText = text;
+        }
+    </script>
 </body>
 </html>
