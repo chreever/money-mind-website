@@ -6,7 +6,7 @@
     <title>MoneyMind | Dein Mindset. Dein Geld. Deine Regeln.</title>
     <link rel="icon" type="image/svg+xml" href="logo.svg">
     <style>
-        /* Modern CSS Reset & Variable Setup */
+        /* Modern CSS Reset & Variable Setup - 100% Lokale System-Schriften */
         :root {
             --bg-dark: #0b0f19;
             --bg-card: #151d30;
@@ -63,7 +63,6 @@
             align-items: center;
         }
 
-        /* HIER IST DAS ANGEPASSTE LOGO-DESIGN */
         .logo {
             display: flex;
             align-items: center;
@@ -226,7 +225,7 @@
             margin-bottom: 20px;
         }
 
-        /* Specific Elements (Checklists, Charts, Stats) */
+        /* Checklists & Graphics */
         .checklist {
             list-style: none;
             margin-top: 20px;
@@ -440,7 +439,6 @@
             .section-title { font-size: 28px; }
         }
     </style>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -464,7 +462,7 @@
     <section class="hero">
         <div class="container">
             <h1>Dein Mindset.<br>Dein Geld. <span>Deine Regeln.</span></h1>
-            <p>In der Schule lernst du vieles – aber nicht, wie Geld wirklich funktioniert. MoneyMind ist dein Upgrade für den Alltag: Vom ersten Taschengeld über die Lehrlingsentschädigung bis zum eigenen Investment. Ohne Banken-Slang. Ohne Bullshit.</p>
+            <p>In der Schule lernst du vieles – aber nicht, wie Geld wirklich funktioniert. MoneyMind ist dein Upgrade for den Alltag: Vom ersten Taschengeld über die Lehrlingsentschädigung bis zum eigenen Investment. Ohne Banken-Slang. Ohne Bullshit.</p>
             <a href="#basics" class="btn">Jetzt Wissen checken</a>
         </div>
     </section>
@@ -508,7 +506,7 @@
                     <p>Die größte Gefahr für junge Budgets sind unsichtbare laufende Kosten. Das summiert sich extrem schnell.</p>
                     <ul class="checklist">
                         <li><strong>Streaming:</strong> Brauchst du wirklich 3 Anbieter gleichzeitig?</li>
-                        <li><strong>In-App-Käufe:</strong> Lösche deine hinterlegte Kreditkarte aus den Stores.</li>
+                        <li><strong>In-App-Käufe:</strong> Pfade sperren. Lösche deine hinterlegte Karte aus den Stores.</li>
                         <li><strong>Buy now, pay later:</strong> Kaufe nur Dinge, die du JETZT bezahlen kannst.</li>
                     </ul>
                 </div>
@@ -545,10 +543,15 @@
                         <div class="chart-bar" style="height: 65%;"></div>
                         <div class="chart-bar" style="height: 90%;"></div>
                     </div>
-                    <div style="text-align: center; margin: 15px 0; color: #f3f4f6;">
-                        $$K_n = K_0 \cdot \left(1 + \frac{p}{100}\right)^n$$
+                    
+                    <div style="text-align: center; margin: 24px 0; color: #ffffff; font-size: 24px; font-weight: 700; letter-spacing: 0.5px;">
+                        K<sub>n</sub> = K<sub>0</sub> · (1 + p/100)<sup>n</sup>
                     </div>
-                    <p style="font-size: 14px;"><em>Je länger du dein Geld arbeiten lässt (\(n\)), desto explosiver wird das Wachstum.</em></p>
+                    
+                    <p style="font-size: 14px; text-align: center; color: var(--text-muted); margin-bottom: 16px;">
+                        <em>K<sub>n</sub> = Endkapital &nbsp;|&&nbsp; K<sub>0</sub> = Startkapital &nbsp;|&&nbsp; p = Zinssatz &nbsp;|&&nbsp; n = Jahre</em>
+                    </p>
+                    <p>Je länger du dein Geld arbeiten lässt (Anzahl der Jahre <sup>n</sup>), desto explosiver wird das Wachstum durch diesen Zinseszinseffekt.</p>
                 </div>
             </div>
         </div>
