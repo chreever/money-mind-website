@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoneyMind | Dein Mindset. Dein Geld. Deine Regeln.</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
     <style>
         /* Modern CSS Reset & Variable Setup */
         :root {
@@ -62,9 +63,16 @@
             align-items: center;
         }
 
+        /* HIER IST DAS ANGEPASSTE LOGO-DESIGN */
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 24px;
             font-weight: 800;
+        }
+        
+        .logo-text {
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -146,7 +154,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* Module Grids & Info Cards (Merged from Basics, Praxis, About) */
+        /* Module Grids & Info Cards */
         .content-section {
             padding: 80px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.03);
@@ -432,16 +440,17 @@
             .section-title { font-size: 28px; }
         }
     </style>
-    <!-- MathJax for mathematical formulas -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="container nav-container">
-            <div class="logo">money-mind.at</div>
+            <div class="logo">
+                <img src="logo.svg" alt="MoneyMind Logo" style="width: 32px; height: 32px;">
+                <span class="logo-text">money-mind.at</span>
+            </div>
             <nav>
                 <ul>
                     <li><a href="#basics">Basics</a></li>
@@ -453,7 +462,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h1>Dein Mindset.<br>Dein Geld. <span>Deine Regeln.</span></h1>
@@ -462,12 +470,10 @@
         </div>
     </section>
 
-    <!-- Basics Section -->
     <section id="basics" class="content-section">
         <div class="container">
             <h2 class="section-title">Money Basics</h2>
             <div class="module-grid">
-                <!-- Mindset -->
                 <div class="info-card mint module-full">
                     <h2><span class="icon" style="color: var(--accent-mint);">🧠</span> Geld beginnt im Kopf</h2>
                     <p>Bevor wir über Zahlen sprechen, müssen wir über Entscheidungen reden. Warum kaufen wir den neusten Sneaker oder das nächste In-App-Upgrade? Oft nicht, weil wir es brauchen, sondern weil unser Gehirn auf schnelle Belohnung programmiert ist. Werbung nutzt genau das aus.</p>
@@ -478,7 +484,6 @@
                     </ul>
                 </div>
 
-                <!-- 50-30-20 Rule -->
                 <div class="info-card mint">
                     <h2><span class="icon" style="color: var(--accent-mint);">📊</span> Die 50-30-20 Regel</h2>
                     <p>Der einfachste Weg, um ein Budget zu strukturieren, ohne jeden Cent eintragen zu müssen.</p>
@@ -499,7 +504,6 @@
                     </ul>
                 </div>
 
-                <!-- Abos -->
                 <div class="info-card mint">
                     <h2><span class="icon" style="color: var(--accent-mint);">📱</span> Die Abo-Falle</h2>
                     <p>Die größte Gefahr für junge Budgets sind unsichtbare laufende Kosten. Das summiert sich extrem schnell.</p>
@@ -513,12 +517,10 @@
         </div>
     </section>
 
-    <!-- Praxis Section -->
     <section id="praxis" class="content-section">
         <div class="container">
             <h2 class="section-title">Börse & Praxis</h2>
             <div class="module-grid">
-                <!-- Aktien -->
                 <div class="info-card blue module-full">
                     <h2><span class="icon" style="color: var(--accent-blue);">🏢</span> Was ist eine Aktie?</h2>
                     <p>Eine Aktie ist kein Lottoschein. Wenn du eine Aktie kaufst, erwirbst du einen realen Anteil an einem Unternehmen.</p>
@@ -528,14 +530,12 @@
                     <p>Aber Achtung: Kurse schwanken (<strong>Volatilität</strong>). Wenn eine SpaceX-Rakete startet, jubelt der Markt. Gibt es Lieferschwierigkeiten für Bauteile (z. B. bei AT&S), fallen Kurse auch mal. Das ist normales Wirtschaften.</p>
                 </div>
 
-                <!-- ETFs -->
                 <div class="info-card blue">
                     <h2><span class="icon" style="color: var(--accent-blue);">🧺</span> Der ETF (Dein Korb)</h2>
                     <p>Einzelne Aktien zu kaufen trägt Risiko. Was, wenn genau "dein" Unternehmen Probleme bekommt?</p>
                     <p>Hier kommen <strong>ETFs</strong> ins Spiel. Ein ETF ist wie ein großer Korb mit hunderten Aktien. Wenn ein Unternehmen einen schlechten Tag hat, gleichen die anderen das aus. Die beste Strategie für langfristigen Vermögensaufbau.</p>
                 </div>
 
-                <!-- Zinseszins -->
                 <div class="info-card blue">
                     <h2><span class="icon" style="color: var(--accent-blue);">📈</span> Der Zinseszins</h2>
                     <p>Deine Erträge erwirtschaften im nächsten Jahr selbst wieder Erträge. Ein Schneeballeffekt.</p>
@@ -555,7 +555,6 @@
         </div>
     </section>
 
-    <!-- Interactive Budget Calculator Section -->
     <section id="rechner" class="calculator-section">
         <div class="container">
             <h2 class="section-title">Tools & Rechner</h2>
@@ -601,13 +600,11 @@
         </div>
     </section>
 
-    <!-- About Me Section -->
     <section id="about" class="content-section">
         <div class="container">
             <h2 class="section-title">Über Chris</h2>
             <div class="module-grid">
                 
-                <!-- 20 Jahre -->
                 <div class="info-card purple module-full">
                     <h2><span class="icon" style="color: var(--accent-purple);">💼</span> 20 Jahre im Maschinenraum</h2>
                     <p>Wenn es um Geld geht, kenne ich das System von innen. Seit zwei Jahrzehnten arbeite ich als Finanzierungs- und Anlagebetreuer in einer Bank. Mein Alltag? Die tiefe Beratung in komplexen Wertpapierthemen, Vorsorgekonzepten und Finanzierungen.</p>
@@ -627,7 +624,6 @@
                     </div>
                 </div>
 
-                <!-- Youth & Education -->
                 <div class="info-card purple">
                     <h2><span class="icon" style="color: var(--accent-purple);">🚀</span> Youth & Education</h2>
                     <p>Als Financial Education Expert und Lehrlingsausbilder spreche ich die Sprache der nächsten Generation. Ich leite Workshops direkt an Schulen (z.B. "Cash statt Crash"), um jungen Menschen das Handwerkszeug für einen souveränen Start zu geben.</p>
@@ -638,7 +634,6 @@
                     </ul>
                 </div>
 
-                <!-- Mindset -->
                 <div class="info-card purple">
                     <h2><span class="icon" style="color: var(--accent-purple);">🧠</span> Mindset & Anlage-Logik</h2>
                     <p>Wissen reicht nicht, wenn die Einstellung nicht stimmt. Als diplomierter Mentaltrainer verbinde ich das harte Zahlen-Setup mit mentaler Stärke. Zudem bilde ich als Fachtrainer an der Sparkassenakademie Branchenkollegen aus.</p>
@@ -648,7 +643,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="container">
         <div class="footer-links">
             <a href="#" onclick="alert('Impressum (Platzhalter)')">Impressum</a>
@@ -658,7 +652,6 @@
         <p>&copy; 2026 money-mind.at. Alle Rechte vorbehalten. Entwickelt für die finanzielle Zukunft der nächsten Generation.</p>
     </footer>
 
-    <!-- Interactive Logic Script -->
     <script>
         function updateCalc() {
             const abos = parseInt(document.getElementById('input-abos').value);
