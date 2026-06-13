@@ -1,0 +1,303 @@
+html_content = """<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyMind | Praxis: Börse & Investments</title>
+    <style>
+        /* Modern CSS Reset & Variable Setup */
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: #151d30;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-mint: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-blue: #3b82f6;
+            --gradient-primary: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Container & Navigation */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(11, 15, 25, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        nav a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 4px;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 60px 0 40px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: linear-gradient(180deg, rgba(21, 29, 48, 0.4) 0%, var(--bg-dark) 100%);
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 60px 0;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .module-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .module-full {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .info-card {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-blue);
+        }
+
+        .info-card h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-card h2 span.icon {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 3px solid var(--accent-blue);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 15px;
+            color: #cbd5e1;
+        }
+
+        /* Simple Chart Visualization */
+        .chart-container {
+            width: 100%;
+            height: 120px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-bottom: 24px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            gap: 4px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: var(--accent-blue);
+            border-radius: 4px 4px 0 0;
+            opacity: 0.8;
+            transition: height 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+    </style>
+    <!-- MathJax for mathematical formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">money-mind.at</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="basics.html">Money Basics</a></li>
+                    <li><a href="praxis.html" class="active">Börse & Praxis</a></li>
+                    <li><a href="index.html#rechner">Tools</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Börse & Praxis</h1>
+            <p>Lass dein Geld für dich arbeiten. Von der Funktionsweise realer Unternehmen bis zum mathematischen Wunder des Zinseszinses.</p>
+        </div>
+    </section>
+
+    <!-- Content Area -->
+    <section class="content-section">
+        <div class="container module-grid">
+
+            <!-- Module 1: Aktien erklärt -->
+            <div class="info-card module-full">
+                <h2><span class="icon">🏢</span> Was ist eigentlich eine Aktie?</h2>
+                <p>Eine Aktie ist kein Lottoschein. Wenn du eine Aktie kaufst, erwirbst du einen realen, kleinen Anteil an einem echten Unternehmen. Du wirst zum Mitbesitzer.</p>
+                <div class="highlight-box">
+                    <strong>Beispiel aus der Praxis:</strong> Stell dir vor, du bist Aktionär. Wenn ein Pharmaunternehmen wie Novo Nordisk ein bahnbrechendes neues Medikament auf den Markt bringt, oder ein Tech-Gigant wie Intel eine neue Generation von Computerchips vorstellt und damit den Gewinn steigert, profitierst du direkt vom Erfolg deines Unternehmens. 
+                </div>
+                <p>Aber Achtung: Kurse schwanken (das nennt man <strong>Volatilität</strong>). Wenn eine Rakete von SpaceX erfolgreich startet, jubelt der Markt. Gibt es jedoch globale Lieferschwierigkeiten für wichtige Bauteile wie Platinen (z. B. bei Herstellern wie AT&S), können die Kurse auch vorübergehend fallen. Das ist das normale Auf und Ab der Wirtschaft.</p>
+            </div>
+
+            <!-- Module 2: ETFs -->
+            <div class="info-card">
+                <h2><span class="icon">🧺</span> Der ETF (Dein Aktien-Korb)</h2>
+                <p>Einzelne Aktien zu kaufen, ist spannend, trägt aber ein höheres Risiko. Was, wenn genau "dein" Unternehmen Probleme bekommt?</p>
+                <p>Hier kommen <strong>ETFs (Exchange Traded Funds)</strong> ins Spiel. Ein ETF ist wie ein großer Korb, in dem nicht nur eine, sondern Hunderte oder Tausende Aktien gleichzeitig liegen. Wenn ein Unternehmen in diesem Korb einen schlechten Tag hat, gleichen die Gewinne der anderen Unternehmen das oft wieder aus. Es ist die beste Strategie, um entspannt und langfristig Vermögen aufzubauen.</p>
+            </div>
+
+            <!-- Module 3: Zinseszins -->
+            <div class="info-card">
+                <h2><span class="icon">📈</span> Der Zinseszins-Effekt</h2>
+                <p>Albert Einstein nannte den Zinseszins angeblich das achte Weltwunder. Warum? Weil deine Erträge im nächsten Jahr selbst wieder Erträge erwirtschaften. Es entsteht ein Schneeballeffekt.</p>
+                
+                <div class="chart-container">
+                    <div class="chart-bar" style="height: 20%;"></div>
+                    <div class="chart-bar" style="height: 30%;"></div>
+                    <div class="chart-bar" style="height: 45%;"></div>
+                    <div class="chart-bar" style="height: 65%;"></div>
+                    <div class="chart-bar" style="height: 90%;"></div>
+                </div>
+
+                <p>Die formale Kraft dahinter lässt sich durch die Zinseszinsformel berechnen:</p>
+                <div style="text-align: center; margin: 15px 0; color: #f3f4f6;">
+                    $$K_n = K_0 \cdot \left(1 + \frac{p}{100}\right)^n$$
+                </div>
+                <p style="font-size: 14px;"><em>Dabei ist \(K_n\) das Endkapital, \(K_0\) dein Startkapital, \(p\) der Zinssatz und \(n\) die Laufzeit in Jahren. Je länger du dein Geld arbeiten lässt (\(n\)), desto explosiver wird das Wachstum.</em></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="container">
+        <p>&copy; 2026 money-mind.at. Alle Rechte vorbehalten.</p>
+    </footer>
+
+</body>
+</html>
+"""
+
+with open("praxis.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+print("File 'praxis.html' written successfully.")
